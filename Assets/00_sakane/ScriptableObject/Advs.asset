@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d83d18ea8c842c544ba805b20acdff08, type: 3}
+  m_Name: Advs
+  m_EditorClassIdentifier: 
+  adv:
+  - adventureNumber: 0
+    backGroundSprite: {fileID: 21300000, guid: f637a1ca95f090f47b83e976f824a7a6, type: 3}
+    characters: []
+    messagese:
+    - aaa
+    - bbb
+    - ccc
+  - adventureNumber: 1
+    backGroundSprite: {fileID: 21300000, guid: 3be263cf3a32cf24481daedc401f22f7, type: 3}
+    characters: []
+    messagese:
+    - aaa
+    - bbb
+    - ccc
+  - adventureNumber: 2
+    backGroundSprite: {fileID: 21300000, guid: c655f12a8b6aee54bbaf8390e2423aac, type: 3}
+    characters: []
+    messagese:
+    - aaa
+    - bbb
+    - ccc
+  - adventureNumber: 3
+    backGroundSprite: {fileID: 21300000, guid: 8d72b08e1e6f6354f80985ba6d254dfb, type: 3}
+    characters: []
+    messagese:
+    - aaa
+    - bbb
+    - ccc
+  - adventureNumber: 4
+    backGroundSprite: {fileID: 21300000, guid: 7e1957aa593cbdb428a2414aecc3762f, type: 3}
+    characters: []
+    messagese:
+    - aaa
+    - bbb
+    - ccc
+  - adventureNumber: 5
+    backGroundSprite: {fileID: 21300000, guid: a2dcd0c145f5e8b4093d3622615addf1, type: 3}
+    characters: []
+    messagese:
+    - aaa
+    - bbb
+    - ccc
+  - adventureNumber: 6
+    backGroundSprite: {fileID: 21300000, guid: 32c052e2423775b44b7f91cef2ea4550, type: 3}
+    characters: []
+    messagese:
+    - aaa
+    - bbb
+    - ccc
+  - adventureNumber: 7
+    backGroundSprite: {fileID: 21300000, guid: 2e29435558b6f8247b39b3479cbd45d1, type: 3}
+    characters: []
+    messagese:
+    - aaa
+    - bbb
+    - ccc
