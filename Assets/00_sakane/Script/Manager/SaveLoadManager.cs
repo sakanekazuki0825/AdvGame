@@ -1,6 +1,3 @@
-using System.IO;
-using UnityEngine;
-
 // 保存読み込み管理クラス
 public sealed class SaveLoadManager : ManagerBase<SaveLoadManager>
 {
@@ -11,24 +8,8 @@ public sealed class SaveLoadManager : ManagerBase<SaveLoadManager>
 		get => maxSaveValue;
 	}
 
-	// 保存読み込みキャンバス
-	[SerializeField]
-	GameObject saveLoadCanvasPrefab;
-	GameObject saveLoadCanvas;
-
-	private void Start()
+	private void OnApplicationQuit()
 	{
-		// 保存読み込みキャンバス生成
-		saveLoadCanvas = Instantiate(saveLoadCanvasPrefab);
-		// 保存読み込みキャンバス非表示
-		saveLoadCanvas.SetActive(false);
-	}
-
-	/// <summary>
-	/// 保存読み込みキャンバスを開く
-	/// </summary>
-	public void SaveLoadCanvasOpen()
-	{
-		saveLoadCanvas.SetActive(true);
+		// 保存する
 	}
 }

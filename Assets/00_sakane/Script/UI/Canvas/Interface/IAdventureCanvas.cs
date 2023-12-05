@@ -1,5 +1,6 @@
-// アドベンチャーキャンバスのインターフェイス
+// アドベンチャーのインターフェイス
 public interface IAdventureCanvas
 {
-	void SetAdventure(AdventureBase adventure);
+	void ChapterChange(Chapter chapter);
+	void CutChange(OneCut cut);
 }

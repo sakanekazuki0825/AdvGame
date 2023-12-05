@@ -50,7 +50,6 @@ public class Player : MonoBehaviour
 		{
 			return;
 		}
-		// ŽŸ‚Ì•¶Žš‚ð•\Ž¦
-		AdventureManager.Instance.NextMessage();
+		AdventureManager.Instance.NextCut();
 	}
 }

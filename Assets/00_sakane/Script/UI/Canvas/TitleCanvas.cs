@@ -1,4 +1,4 @@
-// タイトルのキャンバス
+// タイトルキャンバス
 public class TitleCanvas : CanvasBase
 {
 	/// <summary>
@@ -7,29 +7,40 @@ public class TitleCanvas : CanvasBase
 	public void GameStart()
 	{
 		// セーブデータ選択
+
+		
+		(GM_Title.Instance as GM_Title).GameStart();// 今はゲーム開始
 	}
 
 	/// <summary>
-	/// オプションを開く
+	/// 設定画面
 	/// </summary>
 	public void Option()
 	{
-		OptionManager.Instance.OptionOpen();
+		// オプション表示
 	}
 
 	/// <summary>
-	/// クレジットを開く
+	/// ギャラリー
+	/// </summary>
+	public void Gallery()
+	{
+		// ギャラリー表示
+	}
+
+	/// <summary>
+	/// クレジット画面
 	/// </summary>
 	public void Credit()
 	{
-		(GM_Title.Instance as GM_Title).Credit();
+		// クレジット画面表示
 	}
 
 	/// <summary>
 	/// ゲーム終了
 	/// </summary>
-	public void Quit()
+	public void GameQuit()
 	{
-		(GM_Title.Instance as GM_Title).Quit();
+		// ゲーム終了
 	}
 }

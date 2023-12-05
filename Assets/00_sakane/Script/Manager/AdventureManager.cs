@@ -1,80 +1,86 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 // アドベンチャー管理クラス
-public sealed class AdventureManager : ManagerBase<AdventureManager>
+public class AdventureManager : ManagerBase<AdventureManager>
 {
-	// アドベンチャーのキャンバス
+	// アドベンチャー
+	[SerializeField]
+	List<SO_Chapter> adventures = new List<SO_Chapter>();
+
+	// アドベンチャーキャンバス
 	[SerializeField]
 	GameObject adventureCanvasPrefab;
 	GameObject adventureCanvas;
-
-	// アドベンチャーキャンバスのインターフェース
 	IAdventureCanvas iAdventureCanvas;
 
-	// 表示しているアドベンチャーの番号
-	int adventureNumber = 0;
-	// 表示しているメッセージの番号
-	int messageNumber = 0;
-
-	// アドベンチャー
-	[SerializeField]
-	SO_Adventure so_adventure;
+	// 章の番号
+	int chapterNumber = 0;
+	// カット番号
+	int cutNumber = 0;
 
 	private void Start()
 	{
-		// アドベンチャー用のキャンバス生成
+		// アドベンチャーキャンバス生成
 		adventureCanvas = Instantiate(adventureCanvasPrefab);
+		// アドベンチャーキャンバス表示
 		adventureCanvas.SetActive(true);
+		// アドベンチャーのインタフェイス取得
 		iAdventureCanvas = adventureCanvas.GetComponent<IAdventureCanvas>();
-		iAdventureCanvas.SetAdventure(so_adventure.adv[adventureNumber]);
-	}
-
-	/// <summary>
-	/// 次のアドベンチャーに進む
-	/// </summary>
-	public void NextAdventure()
-	{
-		++adventureNumber;
-	}
-
-	/// <summary>
-	/// 次のメッセージに
-	/// </summary>
-	public void NextMessage()
-	{
-		if (MainMessageText.Instance.IsFinish)
+		// 章の番号設定
+		foreach (var v in adventures)
 		{
-			// メッセージの番号
-			++messageNumber;
-			if (so_adventure.adv[adventureNumber].messagese.Count > messageNumber)
-			{
-				// テキストを更新
-				MainMessageText.Instance.TextDisplay(so_adventure.adv[adventureNumber].messagese[messageNumber]);
-			}
-			else
-			{
-				// メッセージの番号リセット
-				messageNumber = 0;
-				// 次のアドベンチャーに進む
-				NextAdventure();
-				// アドベンチャーを設定
-				iAdventureCanvas.SetAdventure(so_adventure.adv[adventureNumber]);
-			}
+			v.chapterNumber = adventures.IndexOf(v);
+		}
+	}
+
+	/// <summary>
+	/// 初期化
+	/// </summary>
+	void Initialize()
+	{
+		chapterNumber = 0;
+		cutNumber = 0;
+	}
+
+	/// <summary>
+	/// 次のカット
+	/// </summary>
+	public void NextCut()
+	{
+		// 番号を進める
+		++cutNumber;
+
+		// カット数を超えていないか調べる
+		if (cutNumber >= adventures[chapterNumber].chapterCuts.Count)
+		{
+			NextChapter();
+		}
+		// カット変更
+		iAdventureCanvas.CutChange(adventures[chapterNumber].chapterCuts[cutNumber]);
+	}
+
+	/// <summary>
+	/// 次の章に進む
+	/// </summary>
+	public void NextChapter()
+	{
+		// 番号を進める
+		++chapterNumber;
+		// カットは0から
+		cutNumber = 0;
+		// チャプター数が超えていないか調べる
+		if (chapterNumber >= adventures.Count)
+		{
+			// ゲームクリア
+			Debug.Log("ゲームクリア");
+			chapterNumber = 0;
+			LevelManager.OpenLevel("TitleScene").Forget();
 		}
 		else
 		{
-			// 文字送りを飛ばして全ての文字を表示する
-			MainMessageText.Instance.CharacterFeedSkip();
+			// 章の状態を設定
+			iAdventureCanvas.ChapterChange(adventures[chapterNumber].chapter);
 		}
-	}
-
-	/// <summary>
-	/// アドベンチャー読み込み
-	/// </summary>
-	public void AdventureLoad()
-	{
-		// アドベンチャーをクリア
-		so_adventure.adv.Clear();
-		// アドベンチャーをCSVから読み込む？
 	}
 }

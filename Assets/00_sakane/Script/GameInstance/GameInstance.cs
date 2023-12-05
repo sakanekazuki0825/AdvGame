@@ -1,7 +1,7 @@
 using UnityEngine;
 
 // ゲームインスタンス
-public class GameInstance
+public sealed class GameInstance
 {
 	// ゲームの状態
 	public enum GameState
@@ -31,7 +31,7 @@ public class GameInstance
 	[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
 	static void Initialize()
 	{
-		//Debug.Log(Application.persistentDataPath);
+		// ゲームインスタンス生成
 		instance = new GameInstance();
 	}
 

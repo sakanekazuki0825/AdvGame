@@ -1,10 +1,9 @@
 using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Text;
 
 // ファイル管理クラス
-public class FileManager : ManagerBase<FileManager>
+public sealed class FileManager : ManagerBase<FileManager>
 {
 	/// <summary>
 	/// Jsonファイルから読み込み
@@ -91,9 +90,14 @@ public class FileManager : ManagerBase<FileManager>
 	/// </summary>
 	/// <param name="fileName">書き込みを行うファイル名</param>
 	/// <param name="data">書き込むデータ</param>
-	public static void WriteCSV(string fileName, List<string> datas)
+	public static void WriteCSV(string fileName, string data)
 	{
-
+		var fileStream = new FileStream(fileName, FileMode.Open);
+		fileStream.SetLength(0);
+		fileStream.Close();
+		var writer = new StreamWriter(fileName, true);
+		writer.Write(data);
+		writer.Close();
 	}
 
 	/// <summary>
@@ -105,14 +109,14 @@ public class FileManager : ManagerBase<FileManager>
 	{
 		// 読み込んだデータ
 		var datas = new List<string>();
-		if (File.Exists(fileName))
+		if (!File.Exists(fileName))
 		{
 			Debug.Log("ファイルが存在しません");
 			return datas;
 		}
 		// Resouces下のCSV読み込み
-		var csvFile = Resources.Load(fileName) as TextAsset;
-		var reader = new StringReader(csvFile.text);
+		var csvFile = File.ReadAllText(fileName);
+		var reader = new StringReader(csvFile);
 		// 行がなくなるまで一行ずつ読み込む
 		while (reader.Peek() != -1)
 		{
@@ -135,8 +139,13 @@ public class FileManager : ManagerBase<FileManager>
 	/// </summary>
 	/// <param name="fileName">書き込みを行うファイル</param>
 	/// <param name="data">書き込むデータ</param>
-	public static void WriteTSV(string fileName, List<string> datas)
+	public static void WriteTSV(string fileName, string data)
 	{
-
+		var fileStream = new FileStream(fileName,FileMode.Open);
+		fileStream.SetLength(0);
+		fileStream.Close();
+		var writer = new StreamWriter(fileName,true);
+		writer.Write(data);
+		writer.Close();
 	}
 }

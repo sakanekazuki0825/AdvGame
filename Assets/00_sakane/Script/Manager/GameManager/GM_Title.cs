@@ -1,14 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 // タイトルマネージャー
-public class GM_Title : GameManagerBase
+public sealed class GM_Title : GameManagerBase
 {
 	// タイトルキャンバス
 	[SerializeField]
 	GameObject titleCanvasPrefab;
 	GameObject titleCanvas;
+
+	// オプション
+	[SerializeField]
+	GameObject optionCanvasPrefab;
+	GameObject optionCanvas;
 
 	// クレジット
 	[SerializeField]
@@ -27,6 +30,11 @@ public class GM_Title : GameManagerBase
 		creditCanvas = Instantiate(creditCanvasPrefab);
 		// クレジットキャンバス非表示
 		creditCanvas.SetActive(false);
+
+		// オプションキャンバス生成
+		optionCanvas = Instantiate(optionCanvasPrefab);
+		// オプションキャンバス非表示
+		optionCanvas.SetActive(false);
 	}
 
 	/// <summary>
@@ -34,7 +42,7 @@ public class GM_Title : GameManagerBase
 	/// </summary>
 	public void GameStart()
 	{
-
+		LevelManager.OpenLevel("MainScene").Forget();
 	}
 
 	/// <summary>
@@ -42,7 +50,7 @@ public class GM_Title : GameManagerBase
 	/// </summary>
 	public void Credit()
 	{
-
+		creditCanvas.SetActive(true);
 	}
 
 	/// <summary>

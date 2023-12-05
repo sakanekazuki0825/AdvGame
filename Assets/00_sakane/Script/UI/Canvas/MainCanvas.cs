@@ -22,13 +22,13 @@ public class MainCanvas : CanvasBase
 
 	}
 
-	///// <summary>
-	///// ギャラリー
-	///// </summary>
-	//public void GalleryCanvasOpen()
-	//{
+	/// <summary>
+	/// ギャラリー
+	/// </summary>
+	public void GalleryCanvasOpen()
+	{
 
-	//}
+	}
 
 	/// <summary>
 	/// ログ表示

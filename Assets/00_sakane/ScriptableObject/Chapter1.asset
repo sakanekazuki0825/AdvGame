@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d83d18ea8c842c544ba805b20acdff08, type: 3}
+  m_Name: Chapter1
+  m_EditorClassIdentifier: 
+  chapterNumber: 0
+  chapter:
+    backGround: {fileID: 21300000, guid: f637a1ca95f090f47b83e976f824a7a6, type: 3}
+    characterSprite: {fileID: 21300000, guid: 3be263cf3a32cf24481daedc401f22f7, type: 3}
+    characterAnimatorController: {fileID: 9100000, guid: 4914835a868514c4eb7a13c3462c8f96, type: 2}
+  chapterCuts:
+  - cutNumber: 0
+    message: aaa
+    isChoice: 0
+  - cutNumber: 1
+    message: bbb
+    isChoice: 0
+  - cutNumber: 2
+    message: ccc
+    isChoice: 1
