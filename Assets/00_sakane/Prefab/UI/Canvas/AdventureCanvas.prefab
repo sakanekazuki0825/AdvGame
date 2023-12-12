@@ -253,7 +253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backGroundImg: {fileID: 1610175632117963761}
   characterImg: {fileID: 214044244641646905}
-  messageTxt: {fileID: 2564184894818047238}
+  messageTxt: {fileID: 6213409193810231021}
 --- !u!1 &6213409193810231021
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,6 +265,7 @@ GameObject:
   - component: {fileID: 1681278051347812559}
   - component: {fileID: 6788431566859437238}
   - component: {fileID: 2564184894818047238}
+  - component: {fileID: 6610527750140354331}
   m_Layer: 5
   m_Name: MessageTxt
   m_TagString: Untagged
@@ -388,6 +389,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6610527750140354331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6213409193810231021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e85786e173822d489416a3f94592e93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7279466413652813933
 GameObject:
   m_ObjectHideFlags: 0

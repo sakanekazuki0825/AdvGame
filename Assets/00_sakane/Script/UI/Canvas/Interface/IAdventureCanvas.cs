@@ -1,6 +1,8 @@
+using Cysharp.Threading.Tasks;
+
 // アドベンチャーのインターフェイス
 public interface IAdventureCanvas
 {
 	void ChapterChange(Chapter chapter);
-	void CutChange(OneCut cut);
+	UniTask CutChange(OneCut cut);
 }

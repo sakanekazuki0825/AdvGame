@@ -8,6 +8,11 @@ public sealed class GM_Main : GameManagerBase
 	GameObject mainCanvasPrefab;
 	GameObject mainCanvas;
 
+	// オプションキャンバス
+	[SerializeField]
+	GameObject optionCanvasPrefab;
+	GameObject optionCanvas;
+
 	protected override void Start()
 	{
 		base.Start();

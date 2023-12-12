@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+using Cysharp.Threading.Tasks;
 
 // アドベンチャーキャンバス
 public class AdventureCanvas : CanvasBase, IAdventureCanvas
@@ -16,13 +16,16 @@ public class AdventureCanvas : CanvasBase, IAdventureCanvas
 
 	// セリフなどのテキスト
 	[SerializeField]
-	TextMeshProUGUI messageTxt;
+	GameObject messageTxt;
+	IAdvText iadvText;
 
 	protected override void Start()
 	{
 		base.Start();
 		// キャラクターのアニメーター取得
 		characterAnimator = characterImg.GetComponent<Animator>();
+
+		iadvText = messageTxt.GetComponent<IAdvText>();
 	}
 
 	/// <summary>
@@ -43,10 +46,17 @@ public class AdventureCanvas : CanvasBase, IAdventureCanvas
 	/// カット変更
 	/// </summary>
 	/// <param name="cut">カット</param>
-	public void CutChange(OneCut cut)
+	public async UniTask CutChange(OneCut cut)
 	{
+		var token = this.GetCancellationTokenOnDestroy();
+		if (iadvText.IsCharacterFeeding())
+		{
+			iadvText.AllMessageDisplay();
+			return;
+		}
+		await cut.CutBeforeEvent(token);
 		// テキスト設定
-		messageTxt.text = cut.message;
+		iadvText.SetMessageTxt(cut.message);
 		// 選択肢の表示が必要か調べる
 		if (cut.isChoice)
 		{
@@ -62,5 +72,7 @@ public class AdventureCanvas : CanvasBase, IAdventureCanvas
 				characterAnimator.SetTrigger(cut.cutNumber.ToString());
 			}
 		}
+
+		await cut.CurAfterEvent(token);
 	}
 }

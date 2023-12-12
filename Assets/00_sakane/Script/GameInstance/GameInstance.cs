@@ -33,6 +33,8 @@ public sealed class GameInstance
 	{
 		// ゲームインスタンス生成
 		instance = new GameInstance();
+
+		saveData = FileManager.LoadJson<SaveData>(Application.persistentDataPath + "/saveData.json");
 	}
 
 	// 保存するデータ

@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,10 +15,8 @@ public class AdventureManager : ManagerBase<AdventureManager>
 	GameObject adventureCanvas;
 	IAdventureCanvas iAdventureCanvas;
 
-	// 章の番号
-	int chapterNumber = 0;
-	// カット番号
-	int cutNumber = 0;
+	// 現在のデータ
+	AdvData advData = new AdvData();
 
 	private void Start()
 	{
@@ -27,11 +26,11 @@ public class AdventureManager : ManagerBase<AdventureManager>
 		adventureCanvas.SetActive(true);
 		// アドベンチャーのインタフェイス取得
 		iAdventureCanvas = adventureCanvas.GetComponent<IAdventureCanvas>();
-		// 章の番号設定
-		foreach (var v in adventures)
-		{
-			v.chapterNumber = adventures.IndexOf(v);
-		}
+		//// 章の番号設定
+		//foreach (var v in adventures)
+		//{
+		//	v.chapterNumber = adventures.IndexOf(v);
+		//}
 	}
 
 	/// <summary>
@@ -39,8 +38,7 @@ public class AdventureManager : ManagerBase<AdventureManager>
 	/// </summary>
 	void Initialize()
 	{
-		chapterNumber = 0;
-		cutNumber = 0;
+		
 	}
 
 	/// <summary>
@@ -49,15 +47,15 @@ public class AdventureManager : ManagerBase<AdventureManager>
 	public void NextCut()
 	{
 		// 番号を進める
-		++cutNumber;
+		++advData.cutNumber;
 
 		// カット数を超えていないか調べる
-		if (cutNumber >= adventures[chapterNumber].chapterCuts.Count)
+		if (advData.cutNumber >= adventures[advData.chapterNumber].chapterCuts.Count)
 		{
 			NextChapter();
 		}
 		// カット変更
-		iAdventureCanvas.CutChange(adventures[chapterNumber].chapterCuts[cutNumber]);
+		iAdventureCanvas.CutChange(adventures[advData.chapterNumber].chapterCuts[advData.cutNumber]).Forget();
 	}
 
 	/// <summary>
@@ -66,21 +64,30 @@ public class AdventureManager : ManagerBase<AdventureManager>
 	public void NextChapter()
 	{
 		// 番号を進める
-		++chapterNumber;
+		++advData.chapterNumber;
 		// カットは0から
-		cutNumber = 0;
+		advData.cutNumber = 0;
 		// チャプター数が超えていないか調べる
-		if (chapterNumber >= adventures.Count)
+		if (advData.chapterNumber >= adventures.Count)
 		{
 			// ゲームクリア
 			Debug.Log("ゲームクリア");
-			chapterNumber = 0;
+			advData.chapterNumber = 0;
 			LevelManager.OpenLevel("TitleScene").Forget();
 		}
 		else
 		{
 			// 章の状態を設定
-			iAdventureCanvas.ChapterChange(adventures[chapterNumber].chapter);
+			iAdventureCanvas.ChapterChange(adventures[advData.chapterNumber].chapter);
 		}
+	}
+
+	/// <summary>
+	/// アドベンチャー保存
+	/// </summary>
+	/// <param name="number">保存するデータの番号</param>
+	public void AdvSave(int number)
+	{
+		GameInstance.saveData.advDatas[number] = advData;
 	}
 }

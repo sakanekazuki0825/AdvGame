@@ -43,6 +43,6 @@ public class MainCanvas : CanvasBase
 	/// </summary>
 	public void OptionOpen()
 	{
-
+		OptionManager.Instance.OptionOpen();
 	}
 }
