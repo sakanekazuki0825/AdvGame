@@ -21,9 +21,9 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   ScriptParser: Naninovel.ScriptParser, Elringus.Naninovel.Runtime, Version=0.0.0.0,
     Culture=neutral, PublicKeyToken=null
-  InitializationScript: Title
-  TitleScript: Title
-  StartGameScript: Title
+  InitializationScript: MainGame
+  TitleScript: 
+  StartGameScript: MainGame
   AutoAddScripts: 1
   HotReloadScripts: 1
   WatchScripts: 1

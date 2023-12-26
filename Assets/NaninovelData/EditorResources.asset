@@ -166,11 +166,8 @@ MonoBehaviour:
     - name: ToastUI
       pathPrefix: UI
       guid: dd85ce99288c2f8488447fa511b1c0d6
-    - name: Title
-      pathPrefix: UI
-      guid: 0ba6eb452195b6041afb641eb6728ffc
   - Id: Scripts
     Resources:
-    - name: Title
+    - name: MainGame
       pathPrefix: Scripts
-      guid: 7920abab71152dd4d9d6c8fdbe612cd7
+      guid: d191dd421e0a7514d947b6d16f3277bf
